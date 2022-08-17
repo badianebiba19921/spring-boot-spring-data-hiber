@@ -8,14 +8,20 @@ import com.smile.and.pay.ebb.repository.MarchandRepository;
 import com.smile.and.pay.ebb.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import javax.annotation.PostConstruct;
 import javax.jws.WebService;
+import javax.servlet.ServletContext;
 import java.util.Optional;
 
 //@WebService(endpointInterface="com.smile.and.pay.ebb.soap.SmileAndPayService", targetNamespace="http://localhost:8080/SmileAndPayService", serviceName="SmileAndPayService")
+@WebService(endpointInterface="com.smile.and.pay.ebb.soap.SmileAndPayService")
+@Service
 public class SmileAndPayServiceImpl implements SmileAndPayService {
 
-    /*@Autowired
+    @Autowired
     MarchandRepository marchandRepository;
 
     @Autowired
@@ -26,13 +32,18 @@ public class SmileAndPayServiceImpl implements SmileAndPayService {
 
     @Override
     public SmileAndPayResponse addMarchand(Marchand marchand) {
+        System.out.println("marchand ==> " + marchand);
+        System.out.println("marchandRepository ==> " + marchandRepository);
+        System.out.println("productRepository ==> " + productRepository);
+        System.out.println("addressRepository ==> " + addressRepository);
+        //Marchand _marchand = marchandRepository.save(marchand);
         Marchand _marchand = marchandRepository.save(marchand);
-        /*marchand.getAddresses()
+        marchand.getAddresses()
                 .forEach(address -> {
                     address.setMarchand(_marchand);
                     addressRepository.save(address);
-                });*/
-        /*return new SmileAndPayResponse()
+                });
+        return new SmileAndPayResponse()
                 .setCodeRetour(HttpStatus.CREATED.name())
                 .setMessageRetour("Marchand created");
     }
@@ -90,6 +101,6 @@ public class SmileAndPayServiceImpl implements SmileAndPayService {
         }
         return new SmileAndPayResponse()
                 .setCodeRetour(HttpStatus.NO_CONTENT.name())
-                .setMessageRetour("Association maded");
-    }*/
+                .setMessageRetour("Marchand not found");
+    }
 }

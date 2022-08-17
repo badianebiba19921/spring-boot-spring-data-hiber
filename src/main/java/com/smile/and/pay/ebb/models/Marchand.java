@@ -1,6 +1,8 @@
 package com.smile.and.pay.ebb.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,14 +15,16 @@ import java.util.List;
 import java.util.Set;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "marchands")
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "marchand", propOrder = { "id", "create_date", "name", "lastname", "birthdate", "addresses", "products" })
+/*@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "marchand", propOrder = { "id", "create_date", "name", "lastname", "birthdate", "addresses", "products" })*/
 public class Marchand implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
     private Date create_date;
     private String name;
     private String lastname;
